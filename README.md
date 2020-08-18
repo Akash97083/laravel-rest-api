@@ -1,2 +1,2 @@
-# laravel-api
-Laravel Restful API
+# laravel-rest-api
+Laravel 7 Restful API 
