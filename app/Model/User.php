@@ -10,13 +10,19 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    const VERIFIED_USER = '1';
+    const UNVERIFIED_USER = '0';
+
+    const ADMIN_USER = '1';
+    const REGULAR_USER = '0';
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'admin'
     ];
 
     /**
@@ -36,4 +42,12 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function isVerified() {
+        return $this->verified = User::VERIFIED_USER;
+    }
+
+    public function isAdmin() {
+        return $this->admin = User::VERIFIED_USER;
+    }
 }
