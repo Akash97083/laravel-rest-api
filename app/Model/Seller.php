@@ -2,6 +2,9 @@
 
 namespace App\Model;
 
+/**
+ * @method static has(string $string)
+ */
 class Seller extends User
 {
     public function products() {
