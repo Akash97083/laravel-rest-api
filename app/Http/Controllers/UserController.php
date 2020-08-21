@@ -41,17 +41,33 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        $request->validate([
+            'name' => 'required|max:255',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'admin' => 'in:' . User::ADMIN_USER . ',' . User::REGULAR_USER
+        ]);
+
+        $requested_data = $request->only(['name', 'email', 'admin']);
+
+        if ($request->has('admin')) {
+            if (!$user->isVerified()) {
+                return response()->json([
+                    'error' => 'Only verified user can modify admin field',
+                    'code' => 409
+                ], 409);
+            }
+        }
+
+        $user->update($requested_data);
+
+        return response()->json(['data' => $user], 200);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+        return response()->json(['data' => $user], 200);
     }
 }

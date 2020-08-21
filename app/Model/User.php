@@ -11,6 +11,7 @@ use Illuminate\Support\Str;
  * @property mixed|string verified
  * @property mixed|string admin
  * @method static create(array $requested_data)
+ * @method static findOrFail($id)
  */
 class User extends Authenticatable
 {
@@ -53,12 +54,12 @@ class User extends Authenticatable
 
     public function isVerified()
     {
-        return $this->verified = User::VERIFIED_USER;
+        return $this->verified == User::VERIFIED_USER;
     }
 
     public function isAdmin()
     {
-        return $this->admin = User::VERIFIED_USER;
+        return $this->admin == User::VERIFIED_USER;
     }
 
     public function generateVerificationToken()
