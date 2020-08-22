@@ -6,12 +6,12 @@ use App\Model\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class UserController extends Controller
+class UserController extends ApiController
 {
     public function index()
     {
         $users = User::all();
-        return response()->json(['data' => $users], 200);
+        return $this->successResponse(['users' => $users], 200);
     }
 
     public function store(Request $request)
@@ -53,10 +53,7 @@ class UserController extends Controller
 
         if ($request->has('admin')) {
             if (!$user->isVerified()) {
-                return response()->json([
-                    'error' => 'Only verified user can modify admin field',
-                    'code' => 409
-                ], 409);
+                return $this->errorResponse('Only verified user can modify admin field', 409);
             }
         }
 

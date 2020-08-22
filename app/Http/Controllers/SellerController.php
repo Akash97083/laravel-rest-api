@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Seller;
-use Illuminate\Http\Request;
 
-class SellerController extends Controller
+class SellerController extends ApiController
 {
     public function index()
     {

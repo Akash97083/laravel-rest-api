@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Str;
+use function Webmozart\Assert\Tests\StaticAnalysis\lower;
 
 /**
  * @property mixed|string verified
@@ -51,6 +52,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    // its work when user create by model
+    public function setNameAttribute($name)
+    {
+        return Str::lower($name);
+    }
+
+    // its work when user retrieve by model
+    public function getNameAttribute($name)
+    {
+        return Str::upper($name);
+    }
+
+    // its work when user create by model
+    public function setEmailAttribute($email)
+    {
+        return Str::lower($email);
+    }
 
     public function isVerified()
     {
