@@ -54,12 +54,14 @@ class User extends Authenticatable
     ];
 
     // its work when user create by model
+    // Mutator
     public function setNameAttribute($name)
     {
-        return Str::lower($name);
+        $this->attributes['name'] = strtolower($name);
     }
 
     // its work when user retrieve by model
+    // Accessor
     public function getNameAttribute($name)
     {
         return Str::upper($name);
@@ -68,7 +70,7 @@ class User extends Authenticatable
     // its work when user create by model
     public function setEmailAttribute($email)
     {
-        return Str::lower($email);
+        $this->attributes['email'] = strtolower($email);
     }
 
     public function isVerified()
@@ -81,7 +83,7 @@ class User extends Authenticatable
         return $this->admin == User::VERIFIED_USER;
     }
 
-    public function generateVerificationToken()
+    public static function generateVerificationToken()
     {
         return Str::random(40);
     }
