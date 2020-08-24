@@ -39,17 +39,15 @@ class UserController extends ApiController
         return response()->json(['data' => $user], 200);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
-
         $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email|unique:users,email,' . $user->id,
             'admin' => 'in:' . User::ADMIN_USER . ',' . User::REGULAR_USER
         ]);
 
-        $requested_data = $request->only(['name', 'email', 'admin']);
+        $user->fill($request->only(['name', 'email', 'admin']));
 
         if ($request->has('admin')) {
             if (!$user->isVerified()) {
@@ -57,7 +55,11 @@ class UserController extends ApiController
             }
         }
 
-        $user->update($requested_data);
+        if (!$user->isDirty()) {
+            return $this->errorResponse('You need to specify different value to update', 422);
+        }
+
+        $user->save();
 
         return response()->json(['data' => $user], 200);
     }

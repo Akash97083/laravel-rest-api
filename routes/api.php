@@ -22,7 +22,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResources([
     'buyers' => 'BuyerController',
     'sellers' => 'SellerController',
-    'category' => 'CategoryController',
+    'categories' => 'CategoryController',
     'products' => 'ProductController',
     'transactions' => 'TransactionController',
     'users' => 'UserController',
