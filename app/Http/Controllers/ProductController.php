@@ -9,26 +9,12 @@ class ProductController extends ApiController
 {
     public function index()
     {
-        //
-    }
-
-    public function store(Request $request)
-    {
-        //
+        $products = Product::all();
+        return $this->successResponse(['products' => $products], 200);
     }
 
     public function show(Product $product)
     {
-        //
-    }
-
-    public function update(Request $request, Product $product)
-    {
-        //
-    }
-
-    public function destroy(Product $product)
-    {
-        //
+        return $this->successResponse(['product' => $product], 200);
     }
 }
