@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @method static has(string $string)
+ * @property mixed transactions
  */
 class Buyer extends User
 {
