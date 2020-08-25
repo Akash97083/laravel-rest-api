@@ -20,8 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 // buyers
 Route::apiResource('buyers', 'Buyer\BuyerController')->only(['index', 'show']);
-Route::apiResource('buyers.transactions', 'Buyer\BuyerTransactionsController')->only(['index']);
-Route::apiResource('buyers.products', 'Buyer\BuyerProductsController')->only(['index']);
+Route::apiResource('buyers.transactions', 'Buyer\BuyerTransactionController')->only(['index']);
+Route::apiResource('buyers.products', 'Buyer\BuyerProductController')->only(['index']);
+Route::apiResource('buyers.sellers', 'Buyer\BuyerSellerController')->only(['index']);
 
 // sellers
 Route::apiResource('sellers', 'Seller\SellerController')->only(['index', 'show']);

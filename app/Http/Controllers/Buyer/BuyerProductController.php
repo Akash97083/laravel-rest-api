@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Buyer;
 use App\Http\Controllers\ApiController;
 use App\Model\Buyer;
 
-class BuyerProductsController extends ApiController
+class BuyerProductController extends ApiController
 {
     public function index(Buyer $buyer)
     {
