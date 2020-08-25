@@ -18,9 +18,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+// buyers
 Route::apiResource('buyers', 'Buyer\BuyerController')->only(['index', 'show']);
 Route::apiResource('buyers.transactions', 'Buyer\BuyerTransactionsController')->only(['index']);
+Route::apiResource('buyers.products', 'Buyer\BuyerProductsController')->only(['index']);
+
+// sellers
 Route::apiResource('sellers', 'Seller\SellerController')->only(['index', 'show']);
+
 Route::apiResource('categories', 'Category\CategoryController');
 Route::apiResource('products', 'Product\ProductController')->only(['index', 'show']);
 Route::apiResource('transactions', 'Transaction\TransactionController')->only(['index', 'show']);
