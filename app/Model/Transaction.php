@@ -4,6 +4,9 @@ namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * @property mixed product
+ */
 class Transaction extends Model
 {
     protected $fillable = [
