@@ -20,10 +20,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::apiResources([
-    'buyers' => 'BuyerController',
-    'sellers' => 'SellerController',
-    'categories' => 'CategoryController',
-    'products' => 'ProductController',
-    'transactions' => 'TransactionController',
-    'users' => 'UserController',
+    'buyers' => 'Buyer\BuyerController',
+    'sellers' => 'Seller\SellerController',
+    'categories' => 'Category\CategoryController',
+    'products' => 'Product\ProductController',
+    'transactions' => 'Transaction\TransactionController',
+    'transactions.categories' => 'Transaction\TransactionCategoryController',
+    'users' => 'User\UserController'
 ]);

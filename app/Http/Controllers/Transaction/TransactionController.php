@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Transaction;
 
+use App\Http\Controllers\ApiController;
 use App\Model\Transaction;
 use Illuminate\Http\Request;
 
