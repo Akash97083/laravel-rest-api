@@ -9,7 +9,8 @@ class SellerCategoryController extends ApiController
 {
     public function index(Seller $seller)
     {
-        $categories = $seller->products()->has('categories')
+        $categories = $seller->products()
+            ->has('categories')
             ->with('categories')
             ->get()
             ->pluck('categories')

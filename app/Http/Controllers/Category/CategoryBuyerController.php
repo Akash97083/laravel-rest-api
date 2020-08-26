@@ -11,7 +11,8 @@ class CategoryBuyerController extends ApiController
 {
     public function index(Category $category)
     {
-        $buyers = $category->products()->has('transactions')
+        $buyers = $category->products()
+            ->has('transactions')
             ->with('transactions.buyer')
             ->get()
             ->pluck('transactions')

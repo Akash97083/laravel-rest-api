@@ -4,20 +4,24 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Model\Category;
 use App\Model\Seller;
 use Illuminate\Http\Request;
 
-class SellerTransactionController extends ApiController
+class SellerBuyerController extends ApiController
 {
     public function index(Seller $seller)
     {
-        $transactions = $seller->products()
+        $buyers = $seller->products()
             ->has('transactions')
-            ->with('transactions')
+            ->with('transactions.buyer')
             ->get()
             ->pluck('transactions')
-            ->collapse();
+            ->collapse()
+            ->pluck('buyer')
+            ->unique('id')
+            ->values();
 
-        return $this->successResponse(['transactions' => $transactions], 200);
+        return $this->successResponse(['buyers' => $buyers], 200);
     }
 }
