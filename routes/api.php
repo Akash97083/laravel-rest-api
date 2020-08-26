@@ -30,6 +30,7 @@ Route::apiResource('sellers', 'Seller\SellerController')->only(['index', 'show']
 // category
 Route::apiResource('categories', 'Category\CategoryController');
 Route::apiResource('categories.products', 'Category\CategoryProductController')->only(['index']);
+Route::apiResource('categories.sellers', 'Category\CategorySellerController')->only(['index']);
 
 Route::apiResource('products', 'Product\ProductController')->only(['index', 'show']);
 Route::apiResource('transactions', 'Transaction\TransactionController')->only(['index', 'show']);
