@@ -3,8 +3,6 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
-use MongoDB\Driver\Session;
-
 /**
  * @property mixed|string status
  */
@@ -16,6 +14,8 @@ class Product extends Model
     protected $fillable = [
         'name', 'description', 'quantity', 'status', 'image', 'seller_id'
     ];
+
+    protected $hidden = ['pivot'];
 
     public function isAvailable()
     {
