@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Builder;
 
 /**
  * @method static has(string $string)
+ * @property mixed products
  */
 class Seller extends User
 {
