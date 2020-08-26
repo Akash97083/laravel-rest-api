@@ -5,6 +5,7 @@ namespace App\Model;
 use Illuminate\Database\Eloquent\Model;
 /**
  * @property mixed|string status
+ * @method static create(array $data)
  */
 class Product extends Model
 {
