@@ -19,4 +19,15 @@ class ProductCategoryController extends ApiController
         $product->categories()->syncWithoutDetaching([$category->id]);
         return $this->successResponse(['categories' => $product->categories], 200);
     }
+
+    public function destroy(Product $product, Category $category)
+    {
+        if (!$product->categories()->find($category->id)) {
+            return $this->errorResponse('The specified category is not a category of this product', 404);
+        }
+
+        $product->categories()->detach([$category->id]);
+
+        return $this->successResponse(['categories' => $product->categories], 200);
+    }
 }
