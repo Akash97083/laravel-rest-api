@@ -11,6 +11,7 @@ use function Webmozart\Assert\Tests\StaticAnalysis\lower;
 /**
  * @property mixed|string verified
  * @property mixed|string admin
+ * @property mixed id
  * @method static create(array $requested_data)
  * @method static findOrFail($id)
  */

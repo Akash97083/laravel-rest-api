@@ -9,6 +9,7 @@ use App\Model\Product;
 use App\Model\Seller;
 use App\Model\User;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellerProductController extends ApiController
 {
@@ -24,7 +25,7 @@ class SellerProductController extends ApiController
             'name' => 'required|max:255',
             'description' => 'required|max:255',
             'quantity' => 'required|min:1',
-            'image' => 'required|image'
+            'image' => 'image'
         ]);
 
         $data = $request->only(['name', 'description', 'quantity', 'image']);
@@ -36,5 +37,43 @@ class SellerProductController extends ApiController
         $product = Product::create($data);
 
         return $this->successResponse(['product' => $product], 200);
+    }
+
+    public function update(Request $request, Seller $seller, Product $product)
+    {
+        $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required|max:255',
+            'quantity' => 'required|min:1',
+            'status' => 'in:' . Product::AVAILABLE_PRODUCT . ',' . Product::UNAVAILABLE_PRODUCT,
+            'image' => 'image'
+        ]);
+
+        $this->checkSeller($seller, $product);
+
+        $product->fill($request->only(['name', 'description', 'quantity']));
+
+        if ($request->has('status')) {
+            $product->status = $request->status;
+
+            if ($product->isAvailable() && $product->categories()->count() === 0) {
+                return $this->errorResponse('An active product must have at least one category', 409);
+            }
+        }
+
+        if ($product->isClean()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $product->save();
+
+        return $this->successResponse(['product' => $product], 200);
+    }
+
+    public function checkSeller($seller, $product)
+    {
+        if ($seller->id !== $product->seller_id) {
+            throw new HttpException(422, 'The specified seller is not the actual seller of the product');
+        }
     }
 }
