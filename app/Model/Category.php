@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 /**
  * @method static create(array $request_data)
  * @property mixed products
+ * @property mixed id
  */
 class Category extends Model
 {
