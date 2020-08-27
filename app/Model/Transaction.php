@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed product
+ * @method static create(array $array)
  */
 class Transaction extends Model
 {

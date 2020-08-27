@@ -8,6 +8,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed|string status
  * @property mixed transactions
  * @property mixed categories
+ * @property mixed seller_id
+ * @property mixed seller
+ * @property mixed quantity
  * @method static create(array $data)
  */
 class Product extends Model
