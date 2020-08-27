@@ -70,6 +70,14 @@ class SellerProductController extends ApiController
         return $this->successResponse(['product' => $product], 200);
     }
 
+    public function destroy(Seller $seller, Product $product)
+    {
+        $this->checkSeller($seller, $product);
+        $product->delete();
+
+        return $this->successResponse(['product' => $product], 200);
+    }
+
     public function checkSeller($seller, $product)
     {
         if ($seller->id !== $product->seller_id) {
