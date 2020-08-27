@@ -3,8 +3,10 @@
 namespace App\Model;
 
 use Illuminate\Database\Eloquent\Model;
+
 /**
  * @property mixed|string status
+ * @property mixed transactions
  * @method static create(array $data)
  */
 class Product extends Model
