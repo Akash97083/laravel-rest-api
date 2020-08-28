@@ -24,6 +24,12 @@ class DatabaseSeeder extends Seeder
         Transaction::query()->truncate();
         DB::table('category_product')->truncate();
 
+        // no need for my project cause I don`t make user_created event
+        User::flushEventListeners();
+        Category::flushEventListeners();
+        Product::flushEventListeners();
+        Transaction::flushEventListeners();
+
         $usersQuantity = 1000;
         $categoriesQuantity = 30;
         $productsQuantity = 1000;
