@@ -41,7 +41,7 @@ class ProductBuyerTransactionController extends ApiController
         // if transaction save error for any reason, the stored product table reverse the previous data
         // this means if any operation/transaction will be fail, all the stored data will be reverse for this transaction
         return DB::transaction(function () use ($request, $product, $buyer) {
-            $product->quantity = $request->quantity;
+            $product->quantity -= $request->quantity;
             $product->save();
 
            $transaction = Transaction::create([
