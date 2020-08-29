@@ -11,6 +11,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property mixed seller_id
  * @property mixed seller
  * @property mixed quantity
+ * @property mixed image
+ * @property mixed description
+ * @property mixed id
+ * @property mixed name
+ * @property mixed created_at
+ * @property mixed updated_at
  * @method static create(array $data)
  */
 class Product extends Model

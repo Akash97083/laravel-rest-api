@@ -6,6 +6,12 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * @property mixed product
+ * @property mixed id
+ * @property mixed quantity
+ * @property mixed buyer_id
+ * @property mixed product_id
+ * @property mixed created_at
+ * @property mixed updated_at
  * @method static create(array $array)
  */
 class Transaction extends Model
