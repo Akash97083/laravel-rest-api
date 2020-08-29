@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Transformers\SellerTransformer;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -10,6 +11,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Seller extends User
 {
+    public $transformer = SellerTransformer::class;
+
     protected static function booted()
     {
         // static::addGlobalScope(new SellerScope);

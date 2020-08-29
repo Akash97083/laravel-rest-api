@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Transformers\UserTransformer;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -28,6 +29,8 @@ class User extends Authenticatable
 
     const ADMIN_USER = '1';
     const REGULAR_USER = '0';
+
+    public $transformer = UserTransformer::class;
 
     protected $table = 'users';
 

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Transformers\CategoryTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -15,6 +16,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Category extends Model
 {
+    public $transformer = CategoryTransformer::class;
+
     protected $fillable = ['name', 'description'];
 
     public function products()

@@ -3,6 +3,7 @@
 namespace App\Model;
 
 use App\Scopes\BuyerScope;
+use App\Transformers\BuyerTransformer;
 use Illuminate\Database\Eloquent\Builder;
 
 /**
@@ -11,6 +12,8 @@ use Illuminate\Database\Eloquent\Builder;
  */
 class Buyer extends User
 {
+    public $transformer = BuyerTransformer::class;
+
     protected static function booted()
     {
         // static::addGlobalScope(new BuyerScope);

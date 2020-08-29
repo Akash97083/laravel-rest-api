@@ -57,12 +57,12 @@ class SellerProductController extends ApiController
             $product->status = $request->status;
 
             if ($product->isAvailable() && $product->categories()->count() === 0) {
-                return $this->errorResponse('An active product must have at least one category', 409);
+                return $this->errorMessage('An active product must have at least one category', 409);
             }
         }
 
         if ($product->isClean()) {
-            return $this->errorResponse('You need to specify a different value to update', 422);
+            return $this->errorMessage('You need to specify a different value to update', 422);
         }
 
         $product->save();

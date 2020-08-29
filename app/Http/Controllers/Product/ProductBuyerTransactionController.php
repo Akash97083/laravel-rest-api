@@ -18,23 +18,23 @@ class ProductBuyerTransactionController extends ApiController
         ]);
 
         if ($buyer->id === $product->seller_id) {
-            return $this->errorResponse('The buyer must be different from the seller', 409);
+            return $this->errorMessage('The buyer must be different from the seller', 409);
         }
 
         if (!$buyer->isVerified()) {
-            return $this->errorResponse('The buyer must be a verified user', 409);
+            return $this->errorMessage('The buyer must be a verified user', 409);
         }
 
         if (!$product->seller->isVerified()) {
-            return $this->errorResponse('The seller must be a verified user', 409);
+            return $this->errorMessage('The seller must be a verified user', 409);
         }
 
         if (!$product->isAvailable()) {
-            return $this->errorResponse('The product is not available', 409);
+            return $this->errorMessage('The product is not available', 409);
         }
 
         if ($product->quantity < $request->quantity) {
-            return $this->errorResponse('The product does not have enough units for this transaction', 409);
+            return $this->errorMessage('The product does not have enough units for this transaction', 409);
         }
 
         // DB::transaction feature

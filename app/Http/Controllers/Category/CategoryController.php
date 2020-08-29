@@ -48,7 +48,7 @@ class CategoryController extends ApiController
         ]));
 
         if ($category->isClean()) {
-            return $this->errorResponse('You need to specify different value to update', 422);
+            return $this->errorMessage('You need to specify different value to update', 422);
         }
 
         $category->save();

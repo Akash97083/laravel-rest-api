@@ -55,19 +55,19 @@ class Handler extends ExceptionHandler
             return $this->returnValidationErrors($e);
         } elseif ($e instanceof ModelNotFoundException) {
             $model_name = strtolower(class_basename($e->getModel()));
-            return $this->errorResponse("Dose not exists any $model_name with the specific identifier", 404);
+            return $this->errorMessage("Dose not exists any $model_name with the specific identifier", 404);
         } elseif ($e instanceof AuthorizationException) {
-            return $this->errorResponse($e->getMessage(), 403);
+            return $this->errorMessage($e->getMessage(), 403);
         } elseif ($e instanceof NotFoundHttpException) {
-            return $this->errorResponse('The specified url can not be found', 404);
+            return $this->errorMessage('The specified url can not be found', 404);
         } elseif ($e instanceof MethodNotAllowedHttpException) {
-            return $this->errorResponse('The specified method for the request in invalid', 405);
+            return $this->errorMessage('The specified method for the request in invalid', 405);
         } elseif ($e instanceof HttpException) {
-            return $this->errorResponse($e->getMessage(), $e->getStatusCode());
+            return $this->errorMessage($e->getMessage(), $e->getStatusCode());
         } elseif ($e instanceof QueryException) {
             $error_code = $e->errorInfo[1];
             if ($error_code === 1451) {
-                return $this->errorResponse('Can not remove this resource permanently. It is related with other resource', 409);
+                return $this->errorMessage('Can not remove this resource permanently. It is related with other resource', 409);
             }
         }
 
@@ -75,7 +75,7 @@ class Handler extends ExceptionHandler
             return parent::render($request, $e);
         }
 
-        return $this->errorResponse('Unexpected Exception. Try later', 500);
+        return $this->errorMessage('Unexpected Exception. Try later', 500);
     }
 
     public function returnValidationErrors($e)

@@ -2,6 +2,7 @@
 
 namespace App\Model;
 
+use App\Transformers\ProductTransformer;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -21,6 +22,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Product extends Model
 {
+    public $transformer = ProductTransformer::class;
+
     const AVAILABLE_PRODUCT = 'available';
     const UNAVAILABLE_PRODUCT = 'unavailable';
 

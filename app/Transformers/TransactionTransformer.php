@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use App\Model\Transaction;
 use League\Fractal\TransformerAbstract;
+use function Webmozart\Assert\Tests\StaticAnalysis\string;
 
 class TransactionTransformer extends TransformerAbstract
 {
@@ -38,8 +39,8 @@ class TransactionTransformer extends TransformerAbstract
             'quantity' => (int)$transaction->quantity,
             'buyer' => (int)$transaction->buyer_id,
             'product' => (int)$transaction->product_id,
-            'creationDate' => $transaction->created_at,
-            'lastChange' => $transaction->updated_at,
+            'creationDate' => (string)$transaction->created_at,
+            'lastChange' => (string)$transaction->updated_at,
             'deletedDate' => isset($transaction->deleted_at) ? (string)$transaction->deleted_at : null,
         ];
     }
