@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Seller;
 
 use App\Http\Controllers\ApiController;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\HelperController;
 use App\Model\Category;
 use App\Model\Seller;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class SellerBuyerController extends ApiController
             ->unique('id')
             ->values();
 
+        return HelperController::pagination($buyers);
         return $this->successResponse(['buyers' => $buyers], 200);
     }
 }

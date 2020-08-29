@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Product;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Controllers\HelperController;
 use App\Model\Product;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class ProductBuyerController extends ApiController
 {
@@ -16,6 +18,8 @@ class ProductBuyerController extends ApiController
             ->unique('id')
             ->values();
 
-        return $this->successResponse(['buyers' => $buyers], 200);
+        return HelperController::pagination($buyers);
+
+        //return $this->successResponse(['buyers' => $buyers], 200);
     }
 }

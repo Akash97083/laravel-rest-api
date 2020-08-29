@@ -49,7 +49,7 @@ trait ApiResponser
             $collection = $collection->sortBy($attribute);
         }
 
-        return $collection;
+        return $collection->values();
     }
 
     protected function transformData($data, $transformer)
