@@ -11,12 +11,12 @@ trait ApiResponser
         $key_name = array_key_first($data);
         $collection = array_shift($data);
 
-        $collection = $this->sortData($collection);
-
         $transformer = $collection->first()->transformer;
         $collection = $this->transformData($collection, $transformer);
 
-        $data = [$key_name => array_shift($collection)];
+        $sort_data = $this->sortData(array_shift($collection));
+
+        $data = [$key_name => $sort_data];
 
         $data = array_merge(['success' => true], $data);
         return response()->json($data, $code);
@@ -42,9 +42,11 @@ trait ApiResponser
 
     protected function sortData($collection)
     {
+        $collection = collect($collection);
+
         if (request()->has('sort_by')) {
             $attribute = request('sort_by');
-            $collection = $collection->sortBy->{$attribute};
+            $collection = $collection->sortBy($attribute);
         }
 
         return $collection;
